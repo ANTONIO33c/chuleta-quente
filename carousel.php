@@ -15,11 +15,11 @@
                 <img src="images/banner_3.jpg" alt="" class="center-block">
             </div>
         </div>
-        <a href="#banners" class="left carousel-control" role="button" data-side="prev">
+        <a href="#banners" class="left carousel-control" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Anterior</span>
         </a>
-        <a href="#banners" class="right carousel-control" role="button" data-side="next">
+        <a href="#banners" class="right carousel-control" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Próximo</span>
         </a>

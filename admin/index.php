@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/estilo.css">
     <title>Administrativo | Chuleta Quente</title>
 </head>
-<body >
+<body>
     <?php include 'menu_adm.php'; ?>
     <?php include 'adm_options.php'; ?>
 </body>

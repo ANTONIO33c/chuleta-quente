@@ -72,7 +72,7 @@
                         <img src="../images/<?php echo $row['imagem'] ?>" width="100px">
                     </td>
                     <td>
-                        <a href="produtos_atualiza.php?id<?php echo $row['id'] ?>" role="button"
+                        <a href="produtos_atualiza.php?id=<?php echo $row['id'] ?>" role="button"
                             class="btn btn-warning btn-block btn-xs">
                             <span class="glyphicon glyphicon-refresh"></span>
                             <span class="hidden-xs">Alterar</span>

@@ -6,11 +6,11 @@ include 'acesso_com.php';
     $login = $_POST['login'];
     $senha = $_POST['senha'];
     $nivel = $_POST['nivel'];
-    $insereProduto = "insert usuarios (login,senha,nivel)
+    $insereUsuario = "insert usuarios (login,senha,nivel)
     values 
     ('$login','$senha','$nivel')";
 
-    $resultado = $conn->query($insereProduto);
+    $resultado = $conn->query($insereUsuario);
  }
 
 ?>

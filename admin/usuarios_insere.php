@@ -4,7 +4,7 @@ include 'acesso_com.php';
  if($_POST)
  {
     $login = $_POST['login'];
-    $senha = $_POST['senha'];
+    $senha = md5($_POST['senha']);
     $nivel = $_POST['nivel'];
     $insereUsuario = "insert usuarios (login,senha,nivel)
     values 

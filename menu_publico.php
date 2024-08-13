@@ -30,6 +30,7 @@ $rows_tipo = $lista_tipo ->fetch_all();
                 </li>
                 <li><a href="index.php#destaques">DESTAQUES</a></li>
                 <li><a href="index.php#produtos">PRODUTOS</a></li>
+                <li><a href="http://localhost/tincphp/reserva_regras.php">RESERVA</a></li>
                 <!-- Dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

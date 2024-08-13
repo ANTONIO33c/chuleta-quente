@@ -50,10 +50,20 @@
                 <p>possível para atender às preferências, mas não garante a disponibilidade de todas as solicitações</p>
                 
             </div>
-            <div>
-            <input type="submit" value="Estou Ciente das regras" id="button" class="btn btn-success btn-block">
-            <input type="submit" value="não concordo com os termos" id="button" class="btn btn-danger btn-block">
-            </div>
+            
+            <div class="btn-group">
+                    <a href="reserva.php">
+                        <button class="btn btn-success btn-lg ">
+                            Estou ciente da Regras
+                            </button>
+                        
+                      
+                       
+                    <a href="index.php">
+                        <button class="btn btn-danger btn-lg ">
+                            Não concordo com os termos
+                        </button>
+            
         </div>
         </div>
         

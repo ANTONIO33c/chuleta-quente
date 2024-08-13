@@ -1,6 +1,5 @@
 <?php
-include 'acesso_com.php';
-include '../conn/connect.php';
+include 'conn/connect.php';
 
 $listaReserva = $conn->query("select * from reserva");
 $rowReserva = $listaReserva->fetch_assoc();
@@ -19,13 +18,13 @@ $rowsTipos = $listaReserva->num_rows;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
     <title>LISTA DE RESERVAS |CHULETA</title>
 </head>
 
 <body>
-    <?php include 'menu_adm.php'; ?>
+<?php include "menu_publico.php" ?>
     <main class="container">
         <h2 class="breadcrumb alert-danger">Lista de Reservas</h2>
         <table class="table table-hover table-condensed tb-opacidade bg-warning">

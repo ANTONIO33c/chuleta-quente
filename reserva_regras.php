@@ -15,18 +15,19 @@
 </head>
 
 <body>
-    <?php include  'menu_publico.php'?>
+    <?php include  'menu_publico.php'?> 
     <main class="container">
         <div class="row">
-            <div class="text-center">
-                <h1 class="alert alert-danger">Churrascaria Chuleta Quente</h1>
+        <!-- <h1 class="text-center">Churrascaria Chuleta Quente</h1> -->
+            <div class="text-center alert alert-danger">
+                
                 <h2>Regras para Realização de Reservas</h2>
                 <br>
-                <h3 class="font-weight-bold">1. Horário de Funcionamento das Reservas</h3>
+                <h3>1. Horário de Funcionamento das Reservas</h3>
                 <p> As reservas podem ser realizadas de segunda a sábado, das 10h às 22h.
                     Aos domingos e feriados, as reservas devem ser feitas até às 18h.</p>
                 <br>
-                <h3 class="font-weight-bold">2. Procedimento de Reserva</h3>
+                <h3>2. Procedimento de Reserva</h3>
                 <p>As reservas podem ser feitas por telefone, pelo site oficial ou diretamente no balcão da
                     churrascaria.</p>
                 <p>Para efetuar a reserva, é necessário fornecer o CPF, nome completo, número de telefone, e-mail e a
@@ -47,14 +48,15 @@
                 <h3>7. Preferências e Pedidos Especiais</h3>
                 <p>Qualquer solicitação especial, como pratos específicos, decoração ou acomodações especiais, deve ser informada no momento da reserva.</p>
                 <p>possível para atender às preferências, mas não garante a disponibilidade de todas as solicitações</p>
+                
             </div>
             <div>
-            <input type="submit" value="Enviar" id="button" class="btn btn-danger btn-block">
-            <input type="submit" value="Enviar" id="button" class="btn btn-danger btn-block">
+            <input type="submit" value="Estou Ciente das regras" id="button" class="btn btn-success btn-block">
+            <input type="submit" value="não concordo com os termos" id="button" class="btn btn-danger btn-block">
             </div>
         </div>
         </div>
-        </div>
+        
     </main>
 </body>
 

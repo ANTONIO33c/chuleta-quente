@@ -76,7 +76,7 @@ $rowsTipos = $listaReserva->num_rows;
                     </td>
                     <td>
                         <a href="reservas_aceitar_deletar.php?id=<?php echo $rowReserva['id'] ?>" role="button"
-                            class="btn btn-danger btn-block btn-xs">
+                            class="btn btn-warning btn-block btn-xs">
                             <span class="glyphicon glyphicon-refresh"></span>
                             <span class="hidden-xs">Aceitar Reserva ou Recusar</span>
                         </a>

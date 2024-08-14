@@ -8,7 +8,7 @@ if($_POST){
     $ReservaEmail = $_POST['email']; 
   $cpf = $_POST['cpf'];
   $NumeroPessoas = $_POST['numeroPessoas']; 
-  $mesaDisponivel = $_POST['mesas_id'];
+  $mesaDisponivel = $_POST['mesa'];
   $dataReserva = $_POST['dataDisponivel'];
     
 
@@ -24,15 +24,17 @@ if($_POST){
     }
   $horaReserva = $_POST['HorariosDisponivel'];
   $especificacoes_especiais = $_POST['especial'];
+  $ativa = $_POST['ativa'];
   $ReservaAceita = $_POST['reserva_aceita'];
 
-  $insereReserva = "insert into reserva_adm (email,cpf,numero_pessoa,mesa,data_reserva,hora_reserva,especificacoes_especiais,reserva_aceita)
-    values 
-    ('$ReservaEmail' ,$cpf ,$NumeroPessoas, $mesaDisponivel, '$dataReserva', '$horaReserva',' $especificacoes_especiais',$ReservaAceita)";
-
-    $resultado = $conn->query($insereReserva);
+  $updateReserva = "update reserva
+  set mesa = '$mesaDisponivel',
+  reserva_aceita = 1
+  where id = $id;";
+  $resultado = $conn->query($updateReserva);
+    
     if($resultado){
-        header('location:reservas_lista.php');
+        header('location:envio_email.php');
         }    
 }
 if ($_GET){
@@ -45,15 +47,6 @@ if ($_GET){
 $lista = $conn->query('select * from reserva where id ='. $id_reserva);
 $rowReserva = $lista->fetch_assoc();
 
-// inserindo dado na tabela reserva_adm
-$listaReservaAdm = $conn->query('select * from reserva_adm where id ='. $id_reserva);
-$rowReservaAdm = $listaReservaAdm->fetch_assoc();
-
-// recuperando as meses disponiveis
-
-$listaMesa = $conn->query("select * from mesa");
-$rowMesa = $listaMesa ->fetch_assoc();
-$numLinhas = $listaMesa ->num_rows;
 ?>
 
 <!DOCTYPE html>
@@ -81,89 +74,88 @@ $numLinhas = $listaMesa ->num_rows;
                     </a>
                     Aprovar Reserva
                 </h2>
-                <div class="thumbnail">
-                    <div class="alert alert-danger" role="alert">
-                        <form action="reservas_lista.php" method="post" name="form_insere" enctype="multipart/form-data"
-                            id="form_insere">
-                            <input type="hidden" name="id" id="id" value="<?php echo $rowReserva['id'];?>">
 
-                            <label for="descri">EMAIL:</label>
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                </span>
-                                <input type="text" name="email" id="email" class="form-control"
-                                    placeholder="Digite o email" maxlength="30"
-                                    value="<?php echo $rowReserva['email']; ?>">
+                <div class="alert alert-danger" role="alert">
+                    <form action="envio_email.php" method="POST" name="form_insere" enctype="multipart/form-data"
+                        id="form_insere">
+                        <input type="hidden" name="id" id="id" value="<?php echo $rowReserva['id'];?>">
 
-                                <label for="cpf">cpf : </label>
-                                <input type="text" name="cpf" id="cpf" class="form-control" placeholder="Digite o cpf"
-                                    maxlength="30" value="<?php echo $rowReserva['cpf']; ?>"><br><br>
+                        <label for="descri">EMAIL:</label>
+                        <div class="input-group">
 
-                                <label for="numeroPessoas">Numero de pessoas : </label>
-                                <input type="number" name="numeroPessoas" id="numeroPessoas" class="form-control" placeholder="Digite o número de pessoas"
-                                    maxlength="30" value="<?php echo $rowReserva['numero_pessoa']; ?>">
-                                <small>O titular da reserva tem direito a uma sobremesa GRÁTIS se o grupo tiver mais de
-                                    5
-                                    pessoas</small>
-                                <br><br>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Digite o email"
+                                maxlength="30" value="<?php echo $rowReserva['email']; ?>">
 
-                                <label for="mesa_id">Mesas Disponiveis:</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-                                    </span>
-                                    <select name="mesa_id" id="mesa_id" class="form-control" required>
-                                        <?php do{?>
+                            <label for="cpf">cpf : </label>
+                            <input type="text" name="cpf" id="cpf" class="form-control" placeholder="Digite o cpf"
+                                maxlength="30" value="<?php echo $rowReserva['cpf']; ?>"><br><br>
 
+                            <label for="numeroPessoas">Numero de pessoas : </label>
+                            <input type="number" name="numeroPessoas" id="numeroPessoas" class="form-control"
+                                placeholder="Digite o número de pessoas" maxlength="30"
+                                value="<?php echo $rowReserva['numero_pessoa']; ?>">
+                            <small>O titular da reserva tem direito a uma sobremesa GRÁTIS se o grupo tiver mais de
+                                5
+                                pessoas</small>
+                            <br><br>
 
-                                        <option value="<?php echo $rowMesa ['id'];?>">
-                                            <!-- buscar tipo -->
-                                            <?php echo $rowMesa ['numero_mesa'];?>
+                            <label for="mesa">Mesas Disponiveis:</label>
+                            <input type="text" name="mesa" id="mesa" class="form-control"
+                                placeholder="Digite a mesa que estiver disponivel" maxlength="30"
+                                value="<?php echo $rowReserva['mesa']; ?>"><br><br>
 
-                                        </option>
-                                        <?php } while($rowMesa = $listaMesa->fetch_assoc());?>
-                                    </select>
-                                </div>
-                                <label for="dataDisponivel">Datas Disponiveis:</label>
-                                <input type="date" name="dataDisponivel" id="dataDisponivel" class="form-control" placeholder="Digite a data"
-                                    maxlength="30" value="<?php echo $rowReserva['data_reserva']; ?>"><br><br>
+                        </div>
+                        <label for="dataDisponivel">Datas Disponiveis:</label>
+                        <input type="date" name="dataDisponivel" id="dataDisponivel" class="form-control"
+                            placeholder="Digite a data" maxlength="30"
+                            value="<?php echo $rowReserva['data_reserva']; ?>"><br><br>
 
-                                <label for="HorariosDisponivel">Horários Disponiveis:</label>
-                                <input type="time" name="HorariosDisponivel" id="HorariosDisponivel" class="form-control" placeholder="Digite a hora"
-                                    maxlength="30" value="<?php echo $rowReserva['hora_reserva']; ?>">
-                                <small>Horário de funcionamento das 17 ás 23</small>
-                                <br><br>
+                        <label for="HorariosDisponivel">Horários Disponiveis:</label>
+                        <input type="time" name="HorariosDisponivel" id="HorariosDisponivel" class="form-control"
+                            placeholder="Digite a hora" maxlength="30"
+                            value="<?php echo $rowReserva['hora_reserva']; ?>">
+                        <small>Horário de funcionamento das 17 ás 23</small>
+                        <br><br>
 
-                                <br>
-                                <label for="especial">Precisa de algo especial? (opcional) </label>
-                                <input type="text" name="especial" id="especial" class="form-control" placeholder="Digite se precisa de algo especial"
-                                    maxlength="30" value="<?php echo $rowReserva['especificacoes_especiais']; ?>"><br><br>
+                        <br>
+                        <label for="especial">Precisa de algo especial? (opcional) </label>
+                        <input type="text" name="especial" id="especial" class="form-control"
+                            placeholder="Digite se precisa de algo especial" maxlength="30"
+                            value="<?php echo $rowReserva['especificacoes_especiais']; ?>"><br><br>
 
-                                    <label for="aceita">Aceita essa reserva? :</label>
-                            <div class="input-group">
-                                <label for="aceito" class="radio-inline">
-                                    <input type="radio" name="reserva_aceita" id="reserva_aceita" value="1"
-                                        <?php echo $rowReserva['ativa']=="1"?'checked':null; ?>>Aceito
-                                </label>
-                                <label for="recusado" class="radio-inline">
-                                    <input type="radio" name="reserva_aceita" id="reserva_aceita" value="0"
-                                        <?php echo $rowReserva['ativa']=="0"?'checked':null; ?>>Recusado
-                                </label>
-                                
-                            </div>
-                            <br>
+                        <input type="hidden" name="ativa" id="ativa" value="<?php echo $rowReserva['ativa'];?>">
+                        <br>
+                        <input type="submit" name="atualizar" id="atualizar" class="btn btn-success btn-block btn-sm"
+                                value="Confirmar Reserva">
+                        <br>
+                        <a href="reservas_canceladas.php?id=<?php echo $rowReserva['id']; ?>" role="button"
+                            class="btn btn-danger btn-block btn-sm" onclick="return confirmarCancelamento();">
+                            <span class="glyphicon"></span>
+                            <span class="hidden-xs">Cancelar Reserva</span>
+                        </a>
 
-                                <br>
-                                <br>
-                                <input type="submit" value="Confirmar" id="button" class="btn btn-success btn-block">
-                                <br>
-                        </form>
-                    </div>
                 </div>
+                </form>
             </div>
+        </div>
         </div>
     </main>
 </body>
+<script type="text/javascript">
+function confirmarCancelamento() {
+    // Exibe a caixa de confirmação
+    var resposta = confirm("Você tem certeza que deseja cancelar essa reserva?");
+
+    // Se o usuário clicar em "OK", retorna true e a navegação prossegue
+    // Se o usuário clicar em "Cancelar", retorna false e a navegação é interrompida
+    return resposta;
+}
+function confirmarAceitar()
+{
+    var respostaConsulta = confirm("Reserva vai ser aceita, OK?");
+    return respostaConsulta
+}
+</script>
+
 
 </html>

@@ -15,15 +15,16 @@ if ($_POST){
         $mes = $result[1];
         $ano = $result[2];
 
-        // Converte para o formato MySQL (yyyy-mm-dd)
-        $dataReserva = $ano . '-' . $mes . '-' . $dia;
+        $dataReserva = $ano .'-'. $mes .'-'. $dia;
+
     }
+
   $horaReserva = $_POST['HorariosDisponivel'];
   $especificacoes_especiais = $_POST['especial'];
 
   $insereReserva = "insert into reserva (email,cpf,numero_pessoa,data_reserva,hora_reserva,especificacoes_especiais)
     values 
-    ('$ReservaEmail' ,$cpf ,$NumeroPessoas,  $dataReserva, '$horaReserva',' $especificacoes_especiais')";
+    ('$ReservaEmail' ,$cpf ,$NumeroPessoas,  '$dataReserva', '$horaReserva',' $especificacoes_especiais')";
 
     $resultado = $conn->query($insereReserva);
     
@@ -71,24 +72,25 @@ if ($_POST){
                             <input type="text" id="cpf" name="cpf" required class="form-control"><br><br>
 
                             <label for="numeroPessoas">Numero de pessoas : </label>
-                            <input type="number" id="numeroPessoas" name="numeroPessoas" required
-                                class="form-control">
-                                <small>O titular da reserva tem direito a uma sobremesa GRÁTIS se o grupo tiver mais de 5 pessoas</small>
-                                <br><br>
+                            <input type="number" id="numeroPessoas" name="numeroPessoas" required class="form-control">
+                            <small>O titular da reserva tem direito a uma sobremesa GRÁTIS se o grupo tiver mais de 5
+                                pessoas</small>
+                            <br><br>
 
                             <label for="dataDisponivel">Datas Disponiveis:</label>
                             <input type="date" id="dataDisponivel" name="dataDisponivel" required
                                 class="form-control"><br><br>
 
                             <label for="HorariosDisponivel">Horários Disponiveis:</label>
-                            <input type="time" id="HorariosDisponivel" name="HorariosDisponivel" min="17:00" max="23:00" required
-                                class="form-control">
-                                <small>Horário de funcionamento das 17 ás 23</small>
-                                <br><br>
-                            
+                            <input type="time" id="HorariosDisponivel" name="HorariosDisponivel" min="17:00" max="23:00"
+                                required class="form-control">
+                            <small>Horário de funcionamento das 17 ás 23</small>
+                            <br><br>
+
                             <br>
                             <label for="especial">Precisa de algo especial? (opcional) </label>
-                            <input type="text" id="especial" name="especial" class="form-control" placeholder="exemplo: aniversário, ocasiões especiais, etc.."><br><br>
+                            <input type="text" id="especial" name="especial" class="form-control"
+                                placeholder="exemplo: aniversário, ocasiões especiais, etc.."><br><br>
 
                             <br>
                             <input type="submit" value="Enviar" id="button" class="btn btn-danger btn-block">

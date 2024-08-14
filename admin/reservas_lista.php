@@ -75,50 +75,19 @@ $rowsTipos = $listaReserva->num_rows;
                         <span class="hidden-xs"></span>
                     </td>
                     <td>
-                        <a href="reservas_aceitas.php?id=<?php echo $rowReserva['id'] ?>" role="button"
-                            class="btn btn-success btn-block btn-xs">
+                        <a href="reservas_aceitar_deletar.php?id=<?php echo $rowReserva['id'] ?>" role="button"
+                            class="btn btn-danger btn-block btn-xs">
                             <span class="glyphicon glyphicon-refresh"></span>
-                            <span class="hidden-xs">Aceitar Reserva</span>
+                            <span class="hidden-xs">Aceitar Reserva ou Recusar</span>
                         </a>
                     </td>
-                    <td>
-                        <button data-nome="<?php echo $rowReserva['email']; ?>"
-                            data-id="<?php echo $rowReserva['id']; ?>" class="delete btn btn-xs  btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            <span class="">Cancelar Reserva</span>
-                        </button>
-                    </td>
+                    
                     </td>
                 </tr>
 
                 <?php }while($rowReserva = $listaReserva->fetch_assoc());?>
             </tbody>
-    </main>
-    <div class="modal fade" id="modalEdit" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>DESEJA CANCELAR ESSA RESERVA?</h4>
-                    <button class="close" data-dismiss="modal" type="button">
-                        &times;
-
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Deseja mesmo cancelar?
-                    <h4><span class="nome text-danger"></span></h4>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" type="button" class="btn btn-danger delete-yes">
-                        Confirmar
-                    </a>
-                    <button class="btn btn-success" data-dismiss="modal">
-                        Cancelar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>    
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>

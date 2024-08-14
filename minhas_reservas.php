@@ -5,10 +5,6 @@ $listaReserva = $conn->query("select * from reserva");
 $rowReserva = $listaReserva->fetch_assoc();
 $rowsTipos = $listaReserva->num_rows; 
 
-
-
-
-
 ?>
 
 
@@ -24,7 +20,7 @@ $rowsTipos = $listaReserva->num_rows;
 </head>
 
 <body>
-<?php include "menu_publico.php" ?>
+    <?php include "menu_publico.php" ?>
     <main class="container">
         <h2 class="breadcrumb alert-danger">Lista de Reservas</h2>
         <table class="table table-hover table-condensed tb-opacidade bg-warning">
@@ -73,19 +69,13 @@ $rowsTipos = $listaReserva->num_rows;
                         <span class="visible-xs"></span>
                         <span class="hidden-xs"></span>
                     </td>
+
                     <td>
-                        <a href="reservas_aceitas.php?id=<?php echo $rowReserva['id'] ?>" role="button"
-                            class="btn btn-success btn-block btn-xs">
+                        <a href="reserva_cancela.php?id=<?php echo $rowReserva['id']; ?>" role="button"
+                            class="btn btn-danger btn-block btn-xs" onclick="return confirmarCancelamento();">
                             <span class="glyphicon glyphicon-refresh"></span>
-                            <span class="hidden-xs">Aceitar Reserva</span>
+                            <span class="hidden-xs">Cancelar minha reserva</span>
                         </a>
-                    </td>
-                    <td>
-                        <button data-nome="<?php echo $rowReserva['email']; ?>"
-                            data-id="<?php echo $rowReserva['id']; ?>" class="delete btn btn-xs  btn-danger">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            <span class="">Cancelar Reserva</span>
-                        </button>
                     </td>
                     </td>
                 </tr>
@@ -93,44 +83,16 @@ $rowsTipos = $listaReserva->num_rows;
                 <?php }while($rowReserva = $listaReserva->fetch_assoc());?>
             </tbody>
     </main>
-    <div class="modal fade" id="modalEdit" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>DESEJA CANCELAR ESSA RESERVA?</h4>
-                    <button class="close" data-dismiss="modal" type="button">
-                        &times;
-
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Deseja mesmo cancelar?
-                    <h4><span class="nome text-danger"></span></h4>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" type="button" class="btn btn-danger delete-yes">
-                        Confirmar
-                    </a>
-                    <button class="btn btn-success" data-dismiss="modal">
-                        Cancelar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$('.delete').on('click', function() {
-    var ReservaRotulo = $(this).data('nome'); //busca o nome com a descrição (data-nome)
-    var ReservaId = $(this).data('id'); // busca o id (data-id)
-    //console.log(id + ' - ' + nome); //exibe no console
-    $('span.nome').text(ReservaRotulo); // insere o nome do item na confirmação
-    $('a.delete-yes').attr('href', 'produtos_excluir.php?id=' +
-    ReservaId); //chama o arquivo php para excluir o produto
-    $('#modalEdit').modal('show'); // chamar o modal
-});
+function confirmarCancelamento() {
+    // Exibe a caixa de confirmação
+    var resposta = confirm("Você tem certeza que deseja cancelar sua reserva?");
+    
+    // Se o usuário clicar em "OK", retorna true e a navegação prossegue
+    // Se o usuário clicar em "Cancelar", retorna false e a navegação é interrompida
+    return resposta;
+}
 </script>
 
 </html>

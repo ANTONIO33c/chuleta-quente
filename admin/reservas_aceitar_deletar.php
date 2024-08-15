@@ -6,11 +6,11 @@ include '../conn/connect.php';
 if($_POST){
     $id = $_POST['id'];
     $ReservaEmail = $_POST['email']; 
-  $cpf = $_POST['cpf'];
-  $NumeroPessoas = $_POST['numeroPessoas']; 
-  $mesaDisponivel = $_POST['mesa'];
-  $dataReserva = $_POST['dataDisponivel'];
-    
+    $cpf = $_POST['cpf'];
+    $NumeroPessoas = $_POST['numeroPessoas']; 
+    $mesaDisponivel = $_POST['mesa'];
+    $dataReserva = $_POST['dataDisponivel'];
+    $email = $_POST['email'];
 
     $result = explode('/', $dataReserva);
 
@@ -29,12 +29,13 @@ if($_POST){
 
   $updateReserva = "update reserva
   set mesa = '$mesaDisponivel',
-  reserva_aceita = 1
+  reserva_aceita = 1,
+  ativa = 1
   where id = $id;";
   $resultado = $conn->query($updateReserva);
     
     if($resultado){
-        header('location:envio_email.php');
+        header("location:envio_email_formulario.php?id=$id");
         }    
 }
 if ($_GET){
@@ -42,7 +43,6 @@ if ($_GET){
 }else{
     $id_reserva = 0;
 }
-
 // pegando os dados da tabela de reserva
 $lista = $conn->query('select * from reserva where id ='. $id_reserva);
 $rowReserva = $lista->fetch_assoc();
@@ -76,7 +76,7 @@ $rowReserva = $lista->fetch_assoc();
                 </h2>
 
                 <div class="alert alert-danger" role="alert">
-                    <form action="envio_email.php" method="POST" name="form_insere" enctype="multipart/form-data"
+                    <form action="reservas_aceitar_deletar.php" method="POST" name="form_insere" enctype="multipart/form-data"
                         id="form_insere">
                         <input type="hidden" name="id" id="id" value="<?php echo $rowReserva['id'];?>">
 
@@ -102,7 +102,7 @@ $rowReserva = $lista->fetch_assoc();
                             <label for="mesa">Mesas Disponiveis:</label>
                             <input type="text" name="mesa" id="mesa" class="form-control"
                                 placeholder="Digite a mesa que estiver disponivel" maxlength="30"
-                                value="<?php echo $rowReserva['mesa']; ?>"><br><br>
+                                ><br><br>
 
                         </div>
                         <label for="dataDisponivel">Datas Disponiveis:</label>
@@ -123,12 +123,13 @@ $rowReserva = $lista->fetch_assoc();
                             placeholder="Digite se precisa de algo especial" maxlength="30"
                             value="<?php echo $rowReserva['especificacoes_especiais']; ?>"><br><br>
 
-                        <input type="hidden" name="ativa" id="ativa" value="<?php echo $rowReserva['ativa'];?>">
+                        <input type="hidden" name="ativa" id="ativa" value="">
+                        <input type="hidden" name="email" id="email" value="<?= $rowReserva['email'] ?>">
                         <br>
                         <input type="submit" name="atualizar" id="atualizar" class="btn btn-success btn-block btn-sm"
                                 value="Confirmar Reserva">
                         <br>
-                        <a href="reservas_canceladas.php?id=<?php echo $rowReserva['id']; ?>" role="button"
+                        <a href="reservas_canceladas.php?id=<?php echo $rowReserva['id']; ?>?email=<?= $rowReserva['email'] ?>" role="button"
                             class="btn btn-danger btn-block btn-sm" onclick="return confirmarCancelamento();">
                             <span class="glyphicon"></span>
                             <span class="hidden-xs">Cancelar Reserva</span>

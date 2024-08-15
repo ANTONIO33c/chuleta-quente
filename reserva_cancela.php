@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $id = $conn->real_escape_string($id);
 
     // Executando a consulta para desativar a reserva
-    $query = "UPDATE reserva SET ativa = 0 WHERE id = " . $id;
+    $query = "UPDATE reserva SET reserva_aceita = 0, ativa = 0 WHERE id = " . $id;
 
     if ($conn->query($query) === TRUE) {
         // Redirecionando de volta para a lista de reservas

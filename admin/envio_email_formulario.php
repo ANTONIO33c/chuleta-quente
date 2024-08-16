@@ -17,7 +17,7 @@ if ($_GET){
 $listaEmail = $conn->query('SELECT * FROM reserva WHERE id ='. $id_form);
 $rowEmail = $listaEmail->fetch_assoc();
 
-00
+
 ?>
 
 <!DOCTYPE html>

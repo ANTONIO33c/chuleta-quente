@@ -53,14 +53,14 @@
             
             <div class="btn-group">
                     <a href="reserva.php">
-                        <button class="btn btn-success btn-lg ">
+                        <button class="btn btn-success btn-lg btn-block ">
                             Estou ciente da Regras
                             </button>
                         
                       
                        
                     <a href="index.php">
-                        <button class="btn btn-danger btn-lg ">
+                        <button class="btn btn-danger btn-lg btn-block ">
                             Não concordo com os termos
                         </button>
             

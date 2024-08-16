@@ -2,11 +2,11 @@
 include 'conn/connect.php';
 $lista = $conn->query('select * from vw_produtos');
 $row_produtos = $lista->fetch_assoc();
-$num_linhas = $lista->num_rows; 
+$num_linhas = $lista->num_rows;
 ?>
-
+ 
 <!-- Mostrar se a consulta retornar vazio   -->
-
+ 
 <?php if($num_linhas == 0){?>
     <h2 class="breadcrumb alert-danger">
         Não há produtos cadastrados!
@@ -34,20 +34,11 @@ $num_linhas = $lista->num_rows;
                     <p class="text-left">
                         <?php echo mb_strimwidth($row_produtos['resumo'],0,42,'...');?>
                     </p>
-                    <p>
-                        <button class="btn btn-default disabled" role="button" style="cursor: default;">
-                            <?php echo "R$".number_format($row_produtos['valor'],2,',','.') ?>
-                        </button>
-                        <a href="produto_detalhes.php?id=<?php echo $row_produtos['id']; ?>">
-                        <span class="hidden-xs">Saiba mais..</span>
-                        <span class="hidden-xs glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                    </a>
-                    </p>
+                 
                 </div>
             </div>
         </div>
         <?php }while($row_produtos = $lista->fetch_assoc()); ?>
     </div>
-
+ 
 <?php }?>
-

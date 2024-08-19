@@ -8,7 +8,7 @@ body{
     padding-left:0 ;
 }
 .fundofixo{
-    background: url('../images/churrascaria.jpg') no-repeat fixed;
+    background: url('../images/fundo-moes.jpg') no-repeat fixed;
     -webkit-background-size: cover;
     background-size: cover;
 }

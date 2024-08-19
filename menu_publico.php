@@ -16,7 +16,7 @@ $rows_tipo = $lista_tipo ->fetch_all();
                 <span class="icon-bar"></span>
             </button>
             <a href="index.php" class="navbar-brand">
-                <img src="images/logo-chuleta.png" alt="Logotipo Chuleta Quente">
+                <img src="images/logo-cowa.svg" alt="Logotipo Cowabunga">
             </a>
         </div>
         <!-- Fecha agrupamento Mobile -->
@@ -30,8 +30,6 @@ $rows_tipo = $lista_tipo ->fetch_all();
                 </li>
                 <li><a href="index.php#destaques">DESTAQUES</a></li>
                 <li><a href="index.php#produtos">PRODUTOS</a></li>
-                <li><a href="http://localhost/tincphp/reserva_regras.php">RESERVA</a></li>
-                <li><a href="http://localhost/tincphp/minhas_reservas.php">MINHAS RESERVAS</a></li>
 
                 <!-- Dropdown -->
                 <li class="dropdown">

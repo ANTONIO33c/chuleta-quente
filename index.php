@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/estilo.css">
     <!-- link bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>CHULETA | QUENTE</title>
+    <title>Cowabunga Pizzaria</title>
 </head>
 
 <body class="fundofixo">

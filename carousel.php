@@ -6,10 +6,10 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="images/banner_1.jpg" alt="" class="center-block">
+                <img src="images/banner-cowa.png" alt="" class="center-block">
             </div>
             <div class="item ">
-                <img src="images/banner_2.jpg" alt="" class="center-block">
+                <img src="images/banner1-cowa.jpg" alt="" class="center-block">
             </div>
             <div class="item ">
                 <img src="images/banner_3.jpg" alt="" class="center-block">
